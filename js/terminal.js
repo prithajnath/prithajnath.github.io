@@ -38,5 +38,9 @@ let KeyCodes = {
 };
 
 document.addEventListener('keydown', function(event) {
-     x.innerHTML = x.innerHTML + KeyCodes[event.keyCode];
+     key = event.keyCode;
+     if(KeyCodes[key]!= undefined){
+         x.innerHTML = x.innerHTML + KeyCodes[key];
+     }
+     
 });
