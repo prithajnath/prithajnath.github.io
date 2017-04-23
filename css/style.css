@@ -5,3 +5,16 @@ h1{
 p{
     font-family: 'Press Start 2P', cursive;
 }
+
+#terminal{
+    font-family: 'Press Start 2P', cursive;
+    animation-name: blinker;
+    animation-duration: 0.6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes blinker{
+    from {opacity: 0;}
+    to {opacity: 0.9;}
+}
