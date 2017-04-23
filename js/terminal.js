@@ -34,12 +34,15 @@ let KeyCodes = {
     77:"m",
     188:",",
     190:".",
-    191:"/"
+    191:"/",
+    32:" "
 };
 
 document.addEventListener('keydown', function(event) {
      key = event.keyCode;
-     if(KeyCodes[key]!= undefined){
+     if(key == 8){
+         x.innerHTML = x.innerHTML.slice(0,x.innerHTML.length-1);
+     }else if(KeyCodes[key]!= undefined){
          x.innerHTML = x.innerHTML + KeyCodes[key];
      }
      
