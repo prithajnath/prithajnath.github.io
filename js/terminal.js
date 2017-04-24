@@ -9,7 +9,8 @@ let Info = {
     "languages.txt":"Python,Ruby,HTML,CSS and JavaScript",
     "frameworks.txt":"Ruby on Rails,Django,Bootstrap,JQuery,ReactJS,NodeJS,paper.js",
     "aws.txt":"Lambda,Certificate Manager,Route53",
-    "vcs.txt":"Git"
+    "vcs.txt":"Git",
+    "contact.txt":"Email: prithajnath@gmail.com, Twitter:@prithajnath"
 }
 
 
@@ -54,7 +55,7 @@ let KeyCodes = {
 let commands = {
     "ls":(x)=>{
         displayOutput(`about.txt education.txt  experience.txt languages.txt frameworks.txt
-        vcs.txt aws.txt`);
+        vcs.txt aws.txt contact.txt`);
     },
     "clear":(x)=>{
         let terminal = document.getElementById("terminal");
