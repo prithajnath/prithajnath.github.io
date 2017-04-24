@@ -97,7 +97,10 @@ document.addEventListener('keydown', function(event) {
      if(key == 13){
          if (commands[x.innerHTML.split(" ")[0]]!=undefined){
              commands[x.innerHTML.split(" ")[0]](x.innerHTML);
-         }else{
+         }else if(x.innerHTML.split(" ")[0]==""){
+             displayOutput("");
+         }
+         else{
              errorMessage(x);
          }
          
