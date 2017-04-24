@@ -6,7 +6,10 @@ let Info = {
     memes`,
     "education.txt":"Computer Science,BS, SUNY Plattsburgh",
     "experience.txt":"Jr. Web Developer, End Point Corp: May - Aug 2016",
-    "languages.txt":"Python,Ruby,HTML,CSS and JavaScript"
+    "languages.txt":"Python,Ruby,HTML,CSS and JavaScript",
+    "frameworks.txt":"Ruby on Rails,Django,Bootstrap,JQuery,ReactJS,NodeJS,paper.js",
+    "aws.txt":"Lambda,Certificate Manager,Route53",
+    "vcs.txt":"Git"
 }
 
 
@@ -50,7 +53,8 @@ let KeyCodes = {
 
 let commands = {
     "ls":(x)=>{
-        displayOutput("about.txt education.txt  experience.txt languages.txt");
+        displayOutput(`about.txt education.txt  experience.txt languages.txt frameworks.txt
+        vcs.txt aws.txt`);
     },
     "clear":(x)=>{
         let terminal = document.getElementById("terminal");
