@@ -62,6 +62,10 @@ let commands = {
     "cat":(x)=>{
         let info = x.replace("cat ","");
         displayOutput(Info[info]);
+    },
+    "echo":(x)=>{
+        let data = x.replace("echo ","");
+        displayOutput(data);
     }
     
 }
