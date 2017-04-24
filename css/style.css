@@ -6,7 +6,7 @@ p{
     font-family: 'Press Start 2P', cursive;
 }
 
-#terminal{
+#blinker{
     font-family: 'Press Start 2P', cursive;
     animation-name: blinker;
     animation-duration: 0.6s;

@@ -1,5 +1,5 @@
 /*global KeyCodes*/
-let x = document.getElementById("input");
+
 let KeyCodes = {
     81:"q",
     87:"w",
@@ -38,8 +38,44 @@ let KeyCodes = {
     32:" "
 };
 
+let commands = {
+    "ls":()=>{
+        displayOutput("about.txt education.txt  experience.txt languages.txt");
+    }
+}
+
+function displayOutput(output){
+    let elem = document.createElement("P");
+    let text = document.createTextNode(output);
+    let terminal = document.getElementById("terminal");
+    let bash = document.getElementById("bash");
+    let NewTerminal = bash.cloneNode(true);
+    document.getElementById("blinker").innerHTML = "";
+    document.getElementById("blinker").setAttribute("id","");
+    document.getElementById("input").setAttribute("id","");
+    bash.setAttribute("id","");
+    elem.appendChild(text);
+    terminal.appendChild(elem);
+    terminal.appendChild(NewTerminal);
+    document.getElementById("input").innerHTML = "";
+}
+    
+
+function errorMessage(x){
+    displayOutput("bash: "+x.innerHTML+": command not found");
+}
+
 document.addEventListener('keydown', function(event) {
+     let x = document.getElementById("input");
      key = event.keyCode;
+     if(key == 13){
+         if (commands[x.innerHTML]!=undefined){
+             commands[x.innerHTML]();
+         }else{
+             errorMessage(x);
+         }
+         
+     }
      if(key == 8){
          x.innerHTML = x.innerHTML.slice(0,x.innerHTML.length-1);
      }else if(KeyCodes[key]!= undefined){
@@ -47,3 +83,4 @@ document.addEventListener('keydown', function(event) {
      }
      
 });
+
