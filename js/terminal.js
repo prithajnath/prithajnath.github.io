@@ -41,7 +41,15 @@ let KeyCodes = {
 let commands = {
     "ls":()=>{
         displayOutput("about.txt education.txt  experience.txt languages.txt");
+    },
+    "clear":()=>{
+        let terminal = document.getElementById("terminal");
+        let bash = document.getElementById("bash");
+        terminal.innerHTML = "";
+        terminal.appendChild(bash);
+        document.getElementById("input").innerHTML = "";
     }
+    
 }
 
 function displayOutput(output){
