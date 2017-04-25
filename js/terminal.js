@@ -1,5 +1,6 @@
+//command caching
 let commandStack = [];
-let commandIndex = -1;
+let commandIndex = 0;
 
 let Info = {
     "about.txt":`I am Prithaj, a CS student at SUNY Plattsburgh. I love web development and dank
@@ -97,10 +98,12 @@ document.addEventListener('keydown', function(event) {
      if(key == 13){
          if (commands[x.innerHTML.split(" ")[0]]!=undefined){
              commands[x.innerHTML.split(" ")[0]](x.innerHTML);
-             commandStack.push(x.innerHTML);
-             commandIndex +=1;
-             console.log(commandStack);
-             console.log(commandIndex);
+             if(x.innerHTML!=""){
+                 commandStack.push(x.innerHTML);
+             }else{
+                 commandStack.push("clear");
+             }
+             commandIndex = commandStack.length;
          }else if(x.innerHTML.split(" ")[0]==""){
              displayOutput("");
          }
@@ -111,15 +114,15 @@ document.addEventListener('keydown', function(event) {
      }
      
      if(key == 38){
-         x.innerHTML = commandStack[commandIndex];
-         if(commandIndex-1>0){
+         if(commandIndex-1>=0){
              commandIndex -=1;
+             x.innerHTML = commandStack[commandIndex];
          }
      }
      if(key == 40){
-         x.innerHTML = commandStack[commandIndex];
-         if(commandIndex+1<commandIndex.length){
+         if(commandIndex+1<commandStack.length){
              commandIndex +=1;
+             x.innerHTML = commandStack[commandIndex];
          }
      }
      if(key == 8){
