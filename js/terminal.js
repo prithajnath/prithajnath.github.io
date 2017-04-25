@@ -55,8 +55,13 @@ let KeyCodes = {
 
 let commands = {
     "ls":(x)=>{
-        displayOutput(`about.txt education.txt  experience.txt languages.txt frameworks.txt
+        if(x.split(" ").length==1){
+            displayOutput(`about.txt education.txt  experience.txt languages.txt frameworks.txt
         vcs.txt aws.txt contact.txt`);
+        }else{
+            errorMessage(x);
+        }
+        
     },
     "clear":(x)=>{
         let terminal = document.getElementById("terminal");
