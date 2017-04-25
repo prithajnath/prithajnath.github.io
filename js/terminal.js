@@ -1,5 +1,6 @@
-/*global KeyCodes*/
-
+//command caching
+let commandStack = [];
+let commandIndex = 0;
 
 let Info = {
     "about.txt":`I am Prithaj, a CS student at SUNY Plattsburgh. I love web development and dank
@@ -102,6 +103,12 @@ document.addEventListener('keydown', function(event) {
      if(key == 13){
          if (commands[x.innerHTML.split(" ")[0]]!=undefined){
              commands[x.innerHTML.split(" ")[0]](x.innerHTML);
+             if(x.innerHTML!=""){
+                 commandStack.push(x.innerHTML);
+             }else{
+                 commandStack.push("clear");
+             }
+             commandIndex = commandStack.length;
          }else if(x.innerHTML.split(" ")[0]==""){
              displayOutput("");
          }
@@ -109,6 +116,19 @@ document.addEventListener('keydown', function(event) {
              errorMessage(x);
          }
          
+     }
+     
+     if(key == 38){
+         if(commandIndex-1>=0){
+             commandIndex -=1;
+             x.innerHTML = commandStack[commandIndex];
+         }
+     }
+     if(key == 40){
+         if(commandIndex+1<commandStack.length){
+             commandIndex +=1;
+             x.innerHTML = commandStack[commandIndex];
+         }
      }
      if(key == 8){
          x.innerHTML = x.innerHTML.slice(0,x.innerHTML.length-1);
