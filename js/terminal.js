@@ -77,6 +77,14 @@ let commands = {
     "echo":(x)=>{
         let data = x.replace("echo ","");
         displayOutput(data);
+    },
+    "help":(x)=>{
+        let commandList = Object.keys(commands);
+        let data = "Try these commands to find out more about me: ";
+        for(let i=0;i<commandList.length;i++){
+            data += commandList[i] + ", "
+        }
+        displayOutput(data.slice(0,data.length-2));
     }
     
 }
