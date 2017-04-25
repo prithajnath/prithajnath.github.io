@@ -55,7 +55,7 @@ let KeyCodes = {
 
 let commands = {
     "ls":(x)=>{
-        if(x.split(" ").length==1){
+        if(x.replace(" ","")=="ls"){
             displayOutput(`about.txt education.txt  experience.txt languages.txt frameworks.txt
         vcs.txt aws.txt contact.txt`);
         }else{
