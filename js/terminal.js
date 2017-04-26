@@ -145,6 +145,9 @@ document.addEventListener('keydown', function(event) {
          if(commandIndex+1<commandStack.length){
              commandIndex +=1;
              x.innerHTML = commandStack[commandIndex];
+         }else if(commandIndex==commandStack.length-1){
+             x.innerHTML = "";
+             commandIndex +=1;
          }
      }
      if(key == 8){
