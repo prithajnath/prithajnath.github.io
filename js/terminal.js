@@ -157,7 +157,7 @@ document.addEventListener('keydown', function(event) {
          let command = x.innerHTML.split(" ")[0];
          let file = x.innerHTML.split(" ")[1];
          for(let i=0;i<files.length;i++){
-             if(files[i].includes(file)){
+             if(IfPrefix(file,files[i])){
                  x.innerHTML = command +" "+files[i];
                  break;
              }
@@ -166,3 +166,14 @@ document.addEventListener('keydown', function(event) {
      
 });
 
+function IfPrefix(a,b){
+    let isPrefix=true;
+    for(let i=0;i<a.length;i++){
+        if(a[i]!=b[i]){
+            isPrefix=false;
+            break;
+        }
+        
+    }
+     return isPrefix;
+}
