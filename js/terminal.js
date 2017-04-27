@@ -158,6 +158,7 @@ document.addEventListener('keydown', function(event) {
          }
      }
      if(key == 8){
+         event.preventDefault();
          x.innerHTML = x.innerHTML.slice(0,x.innerHTML.length-1);
      }else if(KeyCodes[key]!= undefined){
          x.innerHTML = x.innerHTML + KeyCodes[key];
