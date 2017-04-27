@@ -53,3 +53,9 @@ let KeyCodes = {
     191:"/",
     32:" "
 };
+
+module.exports = {
+    files: files,
+    KeyCodes: KeyCodes,
+    Info: Info
+}

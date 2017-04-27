@@ -1,0 +1,22 @@
+{
+  "name": "prithajnath.github.io",
+  "version": "1.0.0",
+  "description": "Linux/UNIX command line style portfolio",
+  "main": "terminal.js",
+  "scripts": {
+    "build":"browserify js/terminal.js -o bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prithajnath/prithajnath.github.io.git"
+  },
+  "author": "Prithaj Nath",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prithajnath/prithajnath.github.io/issues"
+  },
+  "homepage": "https://github.com/prithajnath/prithajnath.github.io#readme",
+  "dependencies": {
+    "browserify": "^14.3.0"
+  }
+}

@@ -1,10 +1,14 @@
+let func = require("./functions");
+let dStore = require("./dataStore");
+
+
 let commands = {
     "ls":(x)=>{
         if(x.replace(" ","")=="ls"){
-            displayOutput(`about.txt education.txt  experience.txt languages.txt frameworks.txt
+            func.displayOutput(`about.txt education.txt  experience.txt languages.txt frameworks.txt
         vcs.txt aws.txt contact.txt`);
         }else{
-            errorMessage(x);
+            func.errorMessage(x);
         }
         
     },
@@ -17,11 +21,11 @@ let commands = {
     },
     "cat":(x)=>{
         let info = x.replace("cat ","");
-        displayOutput(Info[info]);
+        func.displayOutput(dStore.Info[info]);
     },
     "echo":(x)=>{
         let data = x.replace("echo ","");
-        displayOutput(data);
+        func.displayOutput(data);
     },
     "help":(x)=>{
         let commandList = Object.keys(commands);
@@ -29,7 +33,11 @@ let commands = {
         for(let i=0;i<commandList.length;i++){
             data += commandList[i] + ", "
         }
-        displayOutput(data.slice(0,data.length-2));
+        func.displayOutput(data.slice(0,data.length-2));
     }
     
+}
+
+module.exports = {
+    commands: commands
 }

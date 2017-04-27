@@ -31,3 +31,9 @@ function displayOutput(output){
 function errorMessage(x){
     displayOutput("bash: "+x.innerHTML+": command not found");
 };
+
+module.exports = {
+    errorMessage: errorMessage,
+    displayOutput: displayOutput,
+    IfPrefix: IfPrefix
+}

@@ -1,3 +1,7 @@
+let dStore = require("./dataStore.js");
+let func = require("./functions.js");
+let cmds = require("./commands.js");
+
 //command caching
 let commandStack = [];
 let commandIndex = 0;
@@ -8,10 +12,10 @@ let autoCompleteCount = 0;
 
 document.addEventListener('keydown', function(event) {
      let x = document.getElementById("input");
-     key = event.keyCode;
+     let key = event.keyCode;
      if(key == 13){
-         if (commands[x.innerHTML.split(" ")[0]]!=undefined){
-             commands[x.innerHTML.split(" ")[0]](x.innerHTML);
+         if (cmds.commands[x.innerHTML.split(" ")[0]]!=undefined){
+             cmds.commands[x.innerHTML.split(" ")[0]](x.innerHTML);
              if(x.innerHTML!=""){
                  commandStack.push(x.innerHTML);
              }else{
@@ -19,10 +23,10 @@ document.addEventListener('keydown', function(event) {
              }
              commandIndex = commandStack.length;
          }else if(x.innerHTML.split(" ")[0]==""){
-             displayOutput("");
+             func.displayOutput("");
          }
          else{
-             errorMessage(x);
+             func.errorMessage(x);
          }
          
          autoCompleteCache = [];
@@ -48,19 +52,19 @@ document.addEventListener('keydown', function(event) {
      if(key == 8){
          event.preventDefault();
          x.innerHTML = x.innerHTML.slice(0,x.innerHTML.length-1);
-     }else if(KeyCodes[key]!= undefined){
-         x.innerHTML = x.innerHTML + KeyCodes[key];
+     }else if(dStore.KeyCodes[key]!= undefined){
+         x.innerHTML = x.innerHTML + dStore.KeyCodes[key];
      }
      if(key == 9){
          event.preventDefault();
          let command = x.innerHTML.split(" ")[0];
          let file = x.innerHTML.split(" ")[1];
          if (autoCompleteCache.length==0){
-            for(let i=0;i<files.length;i++){
-                if(IfPrefix(file,files[i])){
+            for(let i=0;i<dStore.files.length;i++){
+                if(func.IfPrefix(file,dStore.files[i])){
                  //x.innerHTML = command +" "+files[i];
                  //break;
-                 autoCompleteCache.push(files[i])
+                 autoCompleteCache.push(dStore.files[i])
                 }
             }
          }
