@@ -2,6 +2,10 @@
 let commandStack = [];
 let commandIndex = 0;
 
+//AUto completetion
+let autoCompleteCache = [];
+let autoCompleteCount = 0;
+
 //files
 let files = ["about.txt" ,"education.txt"  ,"experience.txt", "languages.txt", "frameworks.txt",
         "vcs.txt", "aws.txt", "contact.txt"];
@@ -133,6 +137,9 @@ document.addEventListener('keydown', function(event) {
              errorMessage(x);
          }
          
+         autoCompleteCache = [];
+         autoCompleteCount = 0;
+         
      }
      
      if(key == 38){
@@ -159,12 +166,20 @@ document.addEventListener('keydown', function(event) {
          event.preventDefault();
          let command = x.innerHTML.split(" ")[0];
          let file = x.innerHTML.split(" ")[1];
-         for(let i=0;i<files.length;i++){
-             if(IfPrefix(file,files[i])){
-                 x.innerHTML = command +" "+files[i];
-                 break;
-             }
+         if (autoCompleteCache.length==0){
+            for(let i=0;i<files.length;i++){
+                if(IfPrefix(file,files[i])){
+                 //x.innerHTML = command +" "+files[i];
+                 //break;
+                 autoCompleteCache.push(files[i])
+                }
+            }
          }
+         
+         x.innerHTML = command+" "+autoCompleteCache[autoCompleteCount];
+         autoCompleteCount = (autoCompleteCount + 1)%autoCompleteCache.length;
+             
+         
      }
      
 });
