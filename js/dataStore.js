@@ -4,15 +4,15 @@ let files = ["about.txt" ,"education.txt"  ,"experience.txt", "languages.txt", "
 
 //Info
 let Info = {
-    "about.txt":`I am Prithaj, a CS student at SUNY Plattsburgh. I love web development and dank
+    "about.txt":`I am Prithaj Nath, a CS student at SUNY Plattsburgh. I love web development and dank
     memes`,
-    "education.txt":"Computer Science,BS, SUNY Plattsburgh",
+    "education.txt":"Computer Science,BS, SUNY Plattsburgh 2017",
     "experience.txt":"Jr. Web Developer, End Point Corp: May - Aug 2016",
     "languages.txt":"Python,Ruby,HTML,CSS and JavaScript",
-    "frameworks.txt":"Ruby on Rails,Django,Bootstrap,JQuery,ReactJS,NodeJS,paper.js",
+    "frameworks.txt":"Ruby on Rails,Django,Bootstrap,JQuery,React.js,Node.js,Paper.js",
     "aws.txt":"Lambda,Certificate Manager,Route53",
     "vcs.txt":"Git",
-    "contact.txt":"Email: prithajnath@gmail.com, Twitter:@prithajnath"
+    "contact.txt":"Email: prithajnath@gmail.com, Twitter: prithajnath, GitHub: prithajnath"
 }
 
 //Key Mappings
