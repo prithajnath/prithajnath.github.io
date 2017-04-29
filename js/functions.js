@@ -1,3 +1,4 @@
+// Check if string a is a prefix of string b
 function IfPrefix(a,b){
     let isPrefix=true;
     for(let i=0;i<a.length;i++){
@@ -10,7 +11,7 @@ function IfPrefix(a,b){
      return isPrefix;
 };
 
-
+// Print data to the DOM
 function displayOutput(output){
     let elem = document.createElement("P");
     let text = document.createTextNode(output);
@@ -27,7 +28,7 @@ function displayOutput(output){
     document.getElementById("input").innerHTML = "";
 };
     
-
+// Print error message in DOM
 function errorMessage(x){
     displayOutput("bash: "+x.innerHTML+": command not found");
 };

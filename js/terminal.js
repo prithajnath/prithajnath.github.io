@@ -2,17 +2,18 @@ let dStore = require("./dataStore.js");
 let func = require("./functions.js");
 let cmds = require("./commands.js");
 
-//command caching
+// Command caching
 let commandStack = [];
 let commandIndex = 0;
 
-//AUto completetion
+// Auto completetion
 let autoCompleteCache = [];
 let autoCompleteCount = 0;
 
 document.addEventListener('keydown', function(event) {
      let x = document.getElementById("input");
      let key = event.keyCode;
+     // Enter key
      if(key == 13){
          if (cmds.commands[x.innerHTML.split(" ")[0]]!=undefined){
              cmds.commands[x.innerHTML.split(" ")[0]](x.innerHTML);
@@ -28,18 +29,18 @@ document.addEventListener('keydown', function(event) {
          else{
              func.errorMessage(x);
          }
-         
          autoCompleteCache = [];
          autoCompleteCount = 0;
-         
      }
      
+     // Up arrow key
      if(key == 38){
          if(commandIndex-1>=0){
              commandIndex -=1;
              x.innerHTML = commandStack[commandIndex];
          }
      }
+     // Down arrow key
      if(key == 40){
          if(commandIndex+1<commandStack.length){
              commandIndex +=1;
@@ -49,12 +50,14 @@ document.addEventListener('keydown', function(event) {
              commandIndex +=1;
          }
      }
+     // Backspace key
      if(key == 8){
          event.preventDefault();
          x.innerHTML = x.innerHTML.slice(0,x.innerHTML.length-1);
      }else if(dStore.KeyCodes[key]!= undefined){
          x.innerHTML = x.innerHTML + dStore.KeyCodes[key];
      }
+     // Tab key
      if(key == 9){
          event.preventDefault();
          let command = x.innerHTML.split(" ")[0];
@@ -62,17 +65,11 @@ document.addEventListener('keydown', function(event) {
          if (autoCompleteCache.length==0){
             for(let i=0;i<dStore.files.length;i++){
                 if(func.IfPrefix(file,dStore.files[i])){
-                 //x.innerHTML = command +" "+files[i];
-                 //break;
                  autoCompleteCache.push(dStore.files[i])
                 }
             }
          }
-         
          x.innerHTML = command+" "+autoCompleteCache[autoCompleteCount];
          autoCompleteCount = (autoCompleteCount + 1)%autoCompleteCache.length;
-             
-         
      }
-     
 });
