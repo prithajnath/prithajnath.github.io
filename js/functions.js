@@ -33,8 +33,25 @@ function errorMessage(x){
     displayOutput("bash: "+x.innerHTML+": command not found");
 };
 
+// Switch modes (light and dark)
+function changeColor(){
+    let colors = {"rgb(255, 255, 255)":"rgb(51, 51, 51)","rgb(51, 51, 51)":"rgb(255, 255, 255)"};
+    let bulb = {"brightness(1) invert(0)":"brightness(0) invert(1)","brightness(0) invert(1)":"brightness(1) invert(0)"};
+    if(document.body.style.backgroundColor!="" && document.body.style.color!="" && document.getElementById("bulb").style.filter!=""){
+        document.body.style.backgroundColor = colors[document.body.style.backgroundColor];
+        document.body.style.color = colors[document.body.style.color];
+        document.getElementById("bulb").style.filter = bulb[document.getElementById("bulb").style.filter];
+        
+}else{
+    document.body.style.backgroundColor = "#fff";
+    document.body.style.color = "#333";
+    document.getElementById("bulb").style.filter = "brightness(1) invert(0)";
+    }
+};
+
 module.exports = {
     errorMessage: errorMessage,
     displayOutput: displayOutput,
-    IfPrefix: IfPrefix
+    IfPrefix: IfPrefix,
+    changeColor:changeColor
 }

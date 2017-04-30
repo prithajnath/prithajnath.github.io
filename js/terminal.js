@@ -73,3 +73,5 @@ document.addEventListener('keydown', function(event) {
          autoCompleteCount = (autoCompleteCount + 1)%autoCompleteCache.length;
      }
 });
+
+document.getElementById("bulb").addEventListener("click",func.changeColor);
