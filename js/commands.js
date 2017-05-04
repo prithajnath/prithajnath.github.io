@@ -5,8 +5,7 @@ let dStore = require("./dataStore");
 let commands = {
     "ls":(x)=>{
         if(x.replace(" ","")=="ls"){
-            func.displayOutput(`about.txt education.txt  experience.txt languages.txt frameworks.txt
-        vcs.txt aws.txt contact.txt`);
+            func.displayOutput(dStore.files.join(" "));
         }else{
             func.errorMessage(x);
         }

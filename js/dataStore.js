@@ -1,19 +1,22 @@
-//files
-let files = ["about.txt" ,"education.txt"  ,"experience.txt", "languages.txt", "frameworks.txt",
-        "vcs.txt", "aws.txt", "contact.txt"];
+// Firebase ref
+let fb = require('./firebase');
 
-//Info
-let Info = {
-    "about.txt":`I am Prithaj, a CS student at SUNY Plattsburgh. I love web development and dank
-    memes`,
-    "education.txt":"Computer Science,BS, SUNY Plattsburgh 2017",
-    "experience.txt":"Jr. Web Developer, End Point Corp: May - Aug 2016",
-    "languages.txt":"Python,Ruby,HTML,CSS and JavaScript",
-    "frameworks.txt":"Ruby on Rails,Django,Bootstrap,JQuery,React.js,Node.js,Paper.js",
-    "aws.txt":"Lambda,Certificate Manager,Route53",
-    "vcs.txt":"Git",
-    "contact.txt":"Email: prithajnath@gmail.com, Twitter:prithajnath, GitHub: prithajnath"
-}
+// Info data structure
+let Info = {};
+//Files data structure
+let files = [];
+
+fb.firebase.database().ref().once('value').then(function(snapshot) {
+  let fbaseObj = snapshot.val();
+  let infoKeys = Object.keys(fbaseObj['Info']);
+  for(let i=0;i<infoKeys.length;i++){
+      Info[infoKeys[i].replace("_",".")] = fbaseObj['Info'][infoKeys[i]];
+      files.push(infoKeys[i].replace("_","."));
+  }
+}, function(error){
+    console.log("Error occured",error);
+});
+
 
 //Key Mappings
 let KeyCodes = {
