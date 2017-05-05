@@ -10,15 +10,17 @@ let KeyCodes = {};
 
 fb.firebase.database().ref().once('value').then(function(snapshot) {
   let fbaseObj = snapshot.val();
-  let infoKeys = Object.keys(fbaseObj['Info']);
-  let mapKeys = Object.keys(fbaseObj['KeyCodes']);
-  for(let i=0;i<infoKeys.length;i++){
-      Info[infoKeys[i].replace("_",".")] = fbaseObj['Info'][infoKeys[i]];
-      files.push(infoKeys[i].replace("_","."));
+  for(let i in fbaseObj['Info']){
+      if(fbaseObj['Info'].hasOwnProperty(i)){
+          Info[i.replace("_",".")] = fbaseObj['Info'][i];
+          files.push(i.replace("_","."));
+      }
   }
   
-  for(let j=0;j<mapKeys.length;j++){
-      KeyCodes[mapKeys[j]] = fbaseObj['KeyCodes'][mapKeys[j]];
+  for(let j in fbaseObj['KeyCodes']){
+      if(fbaseObj['KeyCodes'].hasOwnProperty(j)){
+          KeyCodes[j] = fbaseObj['KeyCodes'][j];
+      }
   }
 }, function(error){
     console.log("Error occured",error);
