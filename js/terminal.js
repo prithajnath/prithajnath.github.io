@@ -35,7 +35,7 @@ document.addEventListener('keydown', function(event) {
          
          // scrolling
          if(document.body.scrollHeight-document.getElementById("terminal").offsetHeight<300){
-             $("html, body").animate({ scrollTop: $(document).height()-$(window).height() }, 200);
+             $("html, body").animate({ scrollTop: $(document).height()-$(window).height() }, 60);
          }
      }
      
