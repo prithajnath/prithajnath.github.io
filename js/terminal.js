@@ -1,6 +1,7 @@
 let dStore = require("./dataStore.js");
 let func = require("./functions.js");
 let cmds = require("./commands.js");
+let $ = require("jquery");
 
 // Command caching
 let commandStack = [];
@@ -31,10 +32,16 @@ document.addEventListener('keydown', function(event) {
          }
          autoCompleteCache = [];
          autoCompleteCount = 0;
+         
+         // scrolling
+         if(document.body.scrollHeight-document.getElementById("terminal").offsetHeight<300){
+             $("html, body").animate({ scrollTop: $(document).height()-$(window).height() }, 200);
+         }
      }
      
      // Up arrow key
      if(key == 38){
+         event.preventDefault();
          if(commandIndex-1>=0){
              commandIndex -=1;
              x.innerHTML = commandStack[commandIndex];
