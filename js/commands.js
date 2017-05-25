@@ -12,11 +12,15 @@ let commands = {
         
     },
     "clear":(x)=>{
+        if(x.replace(" ","")=="clear"){
         let terminal = document.getElementById("terminal");
         let bash = document.getElementById("bash");
         terminal.innerHTML = "";
         terminal.appendChild(bash);
         document.getElementById("input").innerHTML = "";
+        }else{
+            func.errorMessage(x);
+        }
     },
     "cat":(x)=>{
         let info = x.replace("cat ","");
@@ -27,12 +31,16 @@ let commands = {
         func.displayOutput(data);
     },
     "help":(x)=>{
+        if(x.replace(" ","")=="help"){
         let commandList = Object.keys(commands);
         let data = "Try these commands to find out more about me: ";
         for(let i=0;i<commandList.length;i++){
             data += commandList[i] + ", "
         }
         func.displayOutput(data.slice(0,data.length-2));
+        }else{
+            func.errorMessage(x);
+        }
     }
     
 }
