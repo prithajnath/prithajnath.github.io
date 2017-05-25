@@ -4,7 +4,7 @@ let dStore = require("./dataStore");
 
 let commands = {
     "ls":(x)=>{
-        if(x.replace(" ","")=="ls"){
+        if(x.replace(/  */,"")=="ls"){
             func.displayOutput(dStore.files.join(" "));
         }else{
             func.errorMessage(x);
@@ -12,7 +12,7 @@ let commands = {
         
     },
     "clear":(x)=>{
-        if(x.replace(" ","")=="clear"){
+        if(x.replace(/  */,"")=="clear"){
         let terminal = document.getElementById("terminal");
         let bash = document.getElementById("bash");
         terminal.innerHTML = "";
@@ -31,7 +31,7 @@ let commands = {
         func.displayOutput(data);
     },
     "help":(x)=>{
-        if(x.replace(" ","")=="help"){
+        if(x.replace(/  */,"")=="help"){
         let commandList = Object.keys(commands);
         let data = "Try these commands to find out more about me: ";
         for(let i=0;i<commandList.length;i++){
