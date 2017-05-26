@@ -15,7 +15,7 @@ document.addEventListener('keydown', function(event) {
      let x = document.getElementById("input");
      let key = event.keyCode;
      // Enter key
-     if(key == 13){
+     if(key === 13){
          if (cmds.commands[x.innerHTML.split(" ")[0]]!=undefined){
              cmds.commands[x.innerHTML.split(" ")[0]](x.innerHTML);
              if(x.innerHTML!=""){
@@ -24,7 +24,7 @@ document.addEventListener('keydown', function(event) {
                  commandStack.push("clear");
              }
              commandIndex = commandStack.length;
-         }else if(x.innerHTML.split(" ")[0]==""){
+         }else if(x.innerHTML.split(" ")[0]===""){
              func.displayOutput("");
          }
          else{
@@ -32,15 +32,15 @@ document.addEventListener('keydown', function(event) {
          }
          autoCompleteCache = [];
          autoCompleteCount = 0;
-         
+
          // scrolling
          if(document.body.scrollHeight-document.getElementById("terminal").offsetHeight<300){
              $("html, body").animate({ scrollTop: $(document).height()-$(window).height() }, 60);
          }
      }
-     
+
      // Up arrow key
-     if(key == 38){
+     if(key === 38){
          event.preventDefault();
          if(commandIndex-1>=0){
              commandIndex -=1;
@@ -48,28 +48,28 @@ document.addEventListener('keydown', function(event) {
          }
      }
      // Down arrow key
-     if(key == 40){
+     if(key === 40){
          if(commandIndex+1<commandStack.length){
              commandIndex +=1;
              x.innerHTML = commandStack[commandIndex];
-         }else if(commandIndex==commandStack.length-1){
+         }else if(commandIndex===commandStack.length-1){
              x.innerHTML = "";
              commandIndex +=1;
          }
      }
      // Backspace key
-     if(key == 8){
+     if(key === 8){
          event.preventDefault();
          x.innerHTML = x.innerHTML.slice(0,x.innerHTML.length-1);
      }else if(dStore.KeyCodes[key]!= undefined){
          x.innerHTML = x.innerHTML + dStore.KeyCodes[key];
      }
      // Tab key
-     if(key == 9){
+     if(key === 9){
          event.preventDefault();
          let command = x.innerHTML.split(" ")[0];
          let file = x.innerHTML.split(" ")[1];
-         if (autoCompleteCache.length==0){
+         if (autoCompleteCache.length===0){
             for(let i=0;i<dStore.files.length;i++){
                 if(func.IfPrefix(file,dStore.files[i])){
                  autoCompleteCache.push(dStore.files[i])
