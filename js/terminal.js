@@ -1,3 +1,8 @@
+require("babel-core/register");
+require("babel-polyfill");
+
+
+
 let dStore = require("./dataStore.js");
 let func = require("./functions.js");
 let cmds = require("./commands.js");
