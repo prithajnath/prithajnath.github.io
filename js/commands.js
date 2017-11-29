@@ -1,5 +1,13 @@
 let func = require("./functions");
-let dStore = require("./dataStore");
+
+
+
+// loading data with Promise
+var dStore = {}
+require("./dataStore.js").then((x)=>{
+    dStore = x.val();
+    dStore['files'] = Object.keys(dStore['Info']).map((x)=>{return x.replace("_",".")});
+});
 
 
 let commands = {
@@ -23,7 +31,7 @@ let commands = {
         }
     },
     "cat":(x)=>{
-        let info = x.replace("cat ","");
+        let info = x.replace("cat ","").replace(".","_");
         func.displayOutput(dStore.Info[info]);
     },
     "echo":(x)=>{

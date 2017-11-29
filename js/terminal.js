@@ -2,11 +2,21 @@ require("babel-core/register");
 require("babel-polyfill");
 
 
+// loading data with Promise
+var dStore = {}
+require("./dataStore.js").then((x)=>{
+    dStore = x.val();
+    dStore['files'] = Object.keys(dStore['Info']).map((x)=>{return x.replace("_",".")});
+});
 
-let dStore = require("./dataStore.js");
 let func = require("./functions.js");
 let cmds = require("./commands.js");
 let $ = require("jquery");
+
+
+
+//setInterval(function(){ console.log(dStore); }, 3000);
+console.log(dStore);
 
 // Command caching
 let commandStack = [];
