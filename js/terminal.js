@@ -15,9 +15,6 @@ let $ = require("jquery");
 
 
 
-//setInterval(function(){ console.log(dStore); }, 3000);
-console.log(dStore);
-
 // Command caching
 let commandStack = [];
 let commandIndex = 0;

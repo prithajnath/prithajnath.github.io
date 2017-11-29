@@ -11,8 +11,7 @@
   },
   "main": "js/terminal.js",
   "scripts": {
-    "build2": "browserify js/terminal.js | uglifyjs -o bundle.js",
-    "build1": "babel js -d lib"
+    "build": "browserify js/terminal.js | uglifyjs -o bundle.js"
   },
   "repository": {
     "type": "git",
