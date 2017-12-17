@@ -87,6 +87,8 @@ function changeColor(){
 
 module.exports = {
     errorMessage: errorMessage,
+    removeOldBash: removeOldBash,
+    createNewBash: createNewBash,
     displayOutput: displayOutput,
     IfPrefix: IfPrefix,
     changeColor:changeColor

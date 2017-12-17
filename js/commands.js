@@ -7,15 +7,35 @@ var dStore = {}
 require("./dataStore.js").then((x)=>{
     dStore = x.val();
     dStore['files'] = Object.keys(dStore['Info']).map((x)=>{return x.replace("_",".")});
-    // for testing only (don't push to prod)
-    dStore['files'].push("pictures");
 });
 
 
 let commands = {
         "ls":(x)=>{
         if(x.replace(/  */,"")==="ls"){
-            func.displayOutput(dStore.files.join(" "));
+            //func.displayOutput(dStore.files.join(" "));
+            let mainP = document.createElement("P");
+            for(var k=0; k<dStore.files.length; k++){
+                var elem = document.createElement("SPAN");
+                if(dStore.files[k].slice(-4)!=".txt"){
+                    elem.setAttribute("class","dir");
+                }
+                
+                // append nodes / set attr
+                elem.innerHTML = " " + dStore.files[k] + " ";
+                mainP.appendChild(elem);
+            }
+            
+            // remove old bash
+            func.removeOldBash();
+            
+            // create new bash
+            let bash = func.createNewBash();
+            
+            let term = document.getElementById("terminal");
+            term.appendChild(mainP);
+            term.appendChild(bash);
+            
         }else{
             func.errorMessage(x);
         }
