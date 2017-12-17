@@ -33,3 +33,7 @@ img {
   -webkit-filter: brightness(0) invert(1);
   filter: brightness(0) invert(1);
 }
+
+.dir {
+    color:#d9534f;
+}

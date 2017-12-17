@@ -7,11 +7,13 @@ var dStore = {}
 require("./dataStore.js").then((x)=>{
     dStore = x.val();
     dStore['files'] = Object.keys(dStore['Info']).map((x)=>{return x.replace("_",".")});
+    // for testing only (don't push to prod)
+    dStore['files'].push("pictures");
 });
 
 
 let commands = {
-    "ls":(x)=>{
+        "ls":(x)=>{
         if(x.replace(/  */,"")==="ls"){
             func.displayOutput(dStore.files.join(" "));
         }else{
@@ -52,6 +54,8 @@ let commands = {
     }
 
 }
+
+
 
 module.exports = {
     commands: commands

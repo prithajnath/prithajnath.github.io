@@ -11,21 +11,57 @@ function IfPrefix(a,b){
      return isPrefix;
 };
 
+// Create new bash node
+function createNewBash(){
+    // create DOM elements
+    let newBash = document.createElement("DIV");
+    let mainP = document.createElement("P");
+    let input = document.createElement("SPAN");
+    let blinker = document.createElement("SPAN");
+    
+    // set sttributes to created elements
+    mainP.innerHTML="~$";
+    newBash.setAttribute("id","bash")
+    input.setAttribute("id","input");
+    blinker.setAttribute("id","blinker");
+    blinker.innerHTML="_";
+    
+    // Append nodes
+    mainP.appendChild(input);
+    mainP.appendChild(blinker);
+    newBash.appendChild(mainP);
+    
+    return newBash;
+    
+}
+
+// Remove attributes from old bash node WARNING: potentially dangerous
+function removeOldBash(){
+    document.getElementById("blinker").innerHTML = "";
+    document.getElementById("blinker").setAttribute("id","");
+    document.getElementById("input").setAttribute("id","");
+    document.getElementById("bash").setAttribute("id","");
+}
+
+
+
 // Print data to the DOM
 function displayOutput(output){
     let elem = document.createElement("P");
     let text = document.createTextNode(output);
     let terminal = document.getElementById("terminal");
-    let bash = document.getElementById("bash");
-    let NewTerminal = bash.cloneNode(true);
-    document.getElementById("blinker").innerHTML = "";
-    document.getElementById("blinker").setAttribute("id","");
-    document.getElementById("input").setAttribute("id","");
-    bash.setAttribute("id","");
+    
+    // new bash node
+    let NewTerminal = createNewBash();
+    
+    // remove old bash
+    removeOldBash();
+    
+    // Append nodes
     elem.appendChild(text);
     terminal.appendChild(elem);
     terminal.appendChild(NewTerminal);
-    document.getElementById("input").innerHTML = "";
+
 };
     
 // Print error message in DOM
