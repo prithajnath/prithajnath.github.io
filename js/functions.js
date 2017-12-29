@@ -11,6 +11,30 @@ function IfPrefix(a,b){
      return isPrefix;
 };
 
+// return path
+function printPath(){
+    return path; /*gloabl path*/
+}
+
+
+// return context
+function getContext(files){
+    var keys = path.split("/").slice(1);
+    var current_key = "";
+    for(var k=0;k<keys.length;k++){
+        if(current_key){
+            current_key = current_key[keys[k]];
+        }else{
+            current_key = files[keys[k]];
+        }
+        
+    }
+    
+    return current_key;
+    
+}
+
+
 // Create new bash node
 function createNewBash(){
     // create DOM elements
@@ -42,7 +66,6 @@ function removeOldBash(){
     document.getElementById("input").setAttribute("id","");
     document.getElementById("bash").setAttribute("id","");
 }
-
 
 
 // Print data to the DOM
@@ -91,5 +114,7 @@ module.exports = {
     createNewBash: createNewBash,
     displayOutput: displayOutput,
     IfPrefix: IfPrefix,
-    changeColor:changeColor
+    changeColor:changeColor,
+    printPath:printPath,
+    getContext:getContext
 }

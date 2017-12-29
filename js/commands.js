@@ -6,23 +6,26 @@ let func = require("./functions");
 var dStore = {}
 require("./dataStore.js").then((x)=>{
     dStore = x.val();
-    dStore['files'] = Object.keys(dStore['Info']).map((x)=>{return x.replace("_",".")});
+    dStore['files'] = Object.keys(dStore['Info']).map( x => x.replace("_","."));
 });
 
 
 let commands = {
         "ls":(x)=>{
+        
+        console.log(dStore["Info"]);
         if(x.replace(/  */,"")==="ls"){
             //func.displayOutput(dStore.files.join(" "));
             let mainP = document.createElement("P");
-            for(var k=0; k<dStore.files.length; k++){
+            let files = Object.keys(func.getContext(dStore['Info'])).map( x => x.replace("_","."));
+            for(var k=0; k<files.length; k++){
                 var elem = document.createElement("SPAN");
-                if(dStore.files[k].slice(-4)!=".txt"){
+                if(files[k].slice(-4)!=".txt"){
                     elem.setAttribute("class","dir");
                 }
                 
                 // append nodes / set attr
-                elem.innerHTML = " " + dStore.files[k] + " ";
+                elem.innerHTML = " " + files[k] + " ";
                 mainP.appendChild(elem);
             }
             
@@ -55,6 +58,26 @@ let commands = {
     "cat":(x)=>{
         let info = x.replace("cat ","").replace(".","_");
         func.displayOutput(dStore.Info[info]);
+    },
+    "cd":(x)=>{
+        if(x.slice(-4)===".txt"){
+            func.displayOutput("Not a directory");
+        }else{
+            let dir = x.replace("cd ","");
+            // update path variable
+            if(dir===".."){
+                path = path.replace(`/${current_dir}`,"");
+            }
+            else{
+                path = path + `/${dir}`;
+                current_dir = dir;
+            }
+            func.displayOutput(" ");
+            
+        }
+    },
+    "pwd":(x) => {
+            func.displayOutput(func.printPath());  
     },
     "echo":(x)=>{
         let data = x.replace("echo ","");

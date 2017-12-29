@@ -3,7 +3,8 @@ let firebase = require("firebase");
 var config = {
 apiKey: "AIzaSyAT4U565uMNqK_m42ytkXrULxEoBus2UnM",
 authDomain: "prithajnathgithubio.firebaseapp.com",
-databaseURL: "https://prithajnathgithubio.firebaseio.com",
+//databaseURL: "https://prithajnathgithubio.firebaseio.com", /*production*/
+databaseURL:"https://prithajnathgithubio-dev.firebaseio.com", /*development*/
 projectId: "prithajnathgithubio",
 storageBucket: "prithajnathgithubio.appspot.com",
 messagingSenderId: "543835991499"

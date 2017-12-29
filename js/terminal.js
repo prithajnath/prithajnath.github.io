@@ -6,13 +6,16 @@ require("babel-polyfill");
 var dStore = {}
 require("./dataStore.js").then((x)=>{
     dStore = x.val();
-    dStore['files'] = Object.keys(dStore['Info']).map((x)=>{return x.replace("_",".")});
+    dStore['files'] = Object.keys(dStore['Info']).map(x => x.replace("_","."));
 });
 
 let func = require("./functions.js");
 let cmds = require("./commands.js");
 let $ = require("jquery");
 
+// global path variable
+path = "~$"; /*global path*/
+current_dir = "/" /*global current_dir*/
 
 
 // Command caching
