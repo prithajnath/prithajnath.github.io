@@ -84,10 +84,11 @@ document.addEventListener('keydown', function(event) {
          event.preventDefault();
          let command = x.innerHTML.split(" ")[0];
          let file = x.innerHTML.split(" ")[1];
+         let files = Object.keys(func.getContext(dStore["Info"])).map(x => x.replace("_","."));
          if (autoCompleteCache.length===0){
-            for(let i=0;i<dStore.files.length;i++){
-                if(func.IfPrefix(file,dStore.files[i])){
-                 autoCompleteCache.push(dStore.files[i])
+            for(let i=0;i<files.length;i++){
+                if(func.IfPrefix(file,files[i])){
+                 autoCompleteCache.push(files[i]);
                 }
             }
          }
