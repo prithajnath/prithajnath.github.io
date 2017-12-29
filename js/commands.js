@@ -57,7 +57,14 @@ let commands = {
     },
     "cat":(x)=>{
         let info = x.replace("cat ","").replace(".","_");
-        func.displayOutput(dStore.Info[info]);
+        //let files = Object.keys(func.getContext(dStore["Info"])).map(x => x.replace("_","."));
+        let files = func.getContext(dStore["Info"]);
+        if(files.hasOwnProperty(info)){
+            func.displayOutput(files[info]);
+        }else{
+            func.errorMessage("No such file or directory");
+        }
+        //func.displayOutput(files);
     },
     "cd":(x)=>{
         if(x.slice(-4)===".txt"){

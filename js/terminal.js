@@ -14,7 +14,7 @@ let cmds = require("./commands.js");
 let $ = require("jquery");
 
 // global path variable
-path = "~$"; /*global path*/
+path = "/"; /*global path*/
 current_dir = "/" /*global current_dir*/
 
 
