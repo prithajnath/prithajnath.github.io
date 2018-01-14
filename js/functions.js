@@ -20,7 +20,7 @@ function printPath(){
 // return context
 function getContext(files){
     var keys = path.split("/").slice(1);
-    var current_key = "";
+    var current_key;
     for(var k=0;k<keys.length;k++){
         if(current_key){
             current_key = current_key[keys[k]];
@@ -30,7 +30,7 @@ function getContext(files){
         
     }
     
-    return current_key;
+    return current_key ? current_key : files;
     
 }
 
@@ -114,7 +114,7 @@ module.exports = {
     createNewBash: createNewBash,
     displayOutput: displayOutput,
     IfPrefix: IfPrefix,
-    changeColor:changeColor,
-    printPath:printPath,
-    getContext:getContext
+    changeColor: changeColor,
+    printPath: printPath,
+    getContext: getContext
 }

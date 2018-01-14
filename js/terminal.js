@@ -92,8 +92,10 @@ document.addEventListener('keydown', function(event) {
                 }
             }
          }
-         x.innerHTML = command+" "+autoCompleteCache[autoCompleteCount];
-         autoCompleteCount = (autoCompleteCount + 1)%autoCompleteCache.length;
+         if(autoCompleteCache[autoCompleteCount]){
+             x.innerHTML = command+" "+autoCompleteCache[autoCompleteCount];
+            autoCompleteCount = (autoCompleteCount + 1)%autoCompleteCache.length;   
+         }
      }
 });
 

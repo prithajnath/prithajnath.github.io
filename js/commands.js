@@ -12,8 +12,6 @@ require("./dataStore.js").then((x)=>{
 
 let commands = {
         "ls":(x)=>{
-        
-        console.log(dStore["Info"]);
         if(x.replace(/  */,"")==="ls"){
             //func.displayOutput(dStore.files.join(" "));
             let mainP = document.createElement("P");
@@ -74,9 +72,10 @@ let commands = {
             // update path variable
             if(dir===".."){
                 path = path.replace(`/${current_dir}`,"");
+                current_dir = path.split("/").pop();
             }
             else{
-                path = path + `/${dir}`;
+                path = (path != "/" ? path : "") + `/${dir}`;
                 current_dir = dir;
             }
             func.displayOutput(" ");
