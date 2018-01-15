@@ -1,3 +1,5 @@
+let $ = require("jquery");
+
 // Check if string a is a prefix of string b
 function IfPrefix(a,b){
     let isPrefix=true;
@@ -71,8 +73,11 @@ function removeOldBash(){
 // Print data to the DOM
 function displayOutput(output){
     let elem = document.createElement("P");
-    let text = document.createTextNode(output);
     let terminal = document.getElementById("terminal");
+    
+    // Using jQuery. Finally gave up
+    $( elem ).html(() => output.replace( /;/g, "<br/><br/>") );
+    
     
     // new bash node
     let NewTerminal = createNewBash();
@@ -81,7 +86,6 @@ function displayOutput(output){
     removeOldBash();
     
     // Append nodes
-    elem.appendChild(text);
     terminal.appendChild(elem);
     terminal.appendChild(NewTerminal);
 

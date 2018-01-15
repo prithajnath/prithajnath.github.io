@@ -37,3 +37,7 @@ img {
 .dir {
     color:#d9534f;
 }
+
+a {
+    cursor: url(../img/pixel_cursor.png), auto;
+}
