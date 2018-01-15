@@ -15,7 +15,10 @@ function IfPrefix(a,b){
 
 // return path
 function printPath(){
-    return path; /*gloabl path*/
+    if(!path){
+        path = "/";
+    }
+    return path;/*gloabl path*/
 }
 
 
