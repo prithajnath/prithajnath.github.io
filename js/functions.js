@@ -88,6 +88,8 @@ function displayOutput(output){
     // Append nodes
     terminal.appendChild(elem);
     terminal.appendChild(NewTerminal);
+    
+    return elem;
 
 };
     

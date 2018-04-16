@@ -1,5 +1,5 @@
 let func = require("./functions");
-
+let $ = require("jquery");
 
 
 // loading data with Promise
@@ -54,14 +54,45 @@ let commands = {
         }
     },
     "cat":(x)=>{
-        let info = x.replace("cat ","").replace(".","_");
-        //let files = Object.keys(func.getContext(dStore["Info"])).map(x => x.replace("_","."));
-        let files = func.getContext(dStore["Info"]);
-        if(files.hasOwnProperty(info)){
-            func.displayOutput(files[info]);
-        }else{
-            func.errorMessage("No such file or directory");
+        var isgif=false;
+        console.log(dStore);
+        if(x.indexOf("--gif")!==-1){
+            isgif=true;
         }
+        let info = x.replace("cat ","")
+                    .replace(".","_")
+                    .replace("--gif","")
+                    .replace(/  */,"");
+        //let files = Object.keys(func.getContext(dStore["Info"])).map(x => x.replace("_","."));
+        if(info){
+            let files = func.getContext(dStore["Info"]);
+            console.log(files);
+            if(files.hasOwnProperty(info)){
+                if(isgif){
+                    
+                        fetch("https://api.giphy.com/v1/gifs/search?q=cat&api_key=uSDUmb3nwESGUPh9pz8cZs13fEbUg57d")
+                        .then(x => x.json())
+                        .then(function(y){
+                            var embed = y.data[Math.floor(Math.random() * Math.floor(25))].images.downsized_medium.url;
+                            // func.displayOutput(`<img src=${embed} />`);
+                            $(func.displayOutput(files[info]))
+                            .append(`<img src=${embed} />`);
+                        });
+                        
+                    
+                }else{
+                        func.displayOutput(files[info]);
+                }
+                
+            }else{
+                console.log(info);
+                func.errorMessage("No such file or directory");
+            }
+        }
+            
+            
+     
+
         //func.displayOutput(files);
     },
     "cd":(x)=>{
