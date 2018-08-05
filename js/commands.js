@@ -77,6 +77,7 @@ let commands = {
                             // func.displayOutput(`<img src=${embed} />`);
                             $(func.displayOutput(files[info]))
                             .append(`<img src=${embed} />`);
+                            $("html, body").animate({ scrollTop: $(document).height()-$(window).height()+1000 }, 60);
                         });
                         
                     

@@ -82,8 +82,18 @@ document.addEventListener('keydown', function(event) {
      // Tab key
      if(key === 9){
          event.preventDefault();
-         let command = x.innerHTML.split(" ")[0];
-         let file = x.innerHTML.split(" ")[1];
+         let inputArray = x.innerHTML.split(" ");
+         console.log(inputArray);
+         console.log(func.checkIfArgs(inputArray));
+         if(func.checkIfArgs(inputArray)){
+             var [command, arg, file] = inputArray;
+         }else{
+             var [command, file] = inputArray;
+             var arg = "";
+         }
+         console.log(file);
+         //let command = x.innerHTML.split(" ")[0];
+         //let file = x.innerHTML.split(" ").slice(-1)[0];
          let files = Object.keys(func.getContext(dStore["Info"])).map(x => x.replace("_","."));
          if (autoCompleteCache.length===0){
             for(let i=0;i<files.length;i++){
@@ -93,7 +103,7 @@ document.addEventListener('keydown', function(event) {
             }
          }
          if(autoCompleteCache[autoCompleteCount]){
-             x.innerHTML = command+" "+autoCompleteCache[autoCompleteCount];
+             x.innerHTML = arg ? command+" "+arg+" "+autoCompleteCache[autoCompleteCount] : command+" "+autoCompleteCache[autoCompleteCount];
             autoCompleteCount = (autoCompleteCount + 1)%autoCompleteCache.length;   
          }
      }

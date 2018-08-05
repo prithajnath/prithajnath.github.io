@@ -1,5 +1,14 @@
 let $ = require("jquery");
 
+
+
+// Check if args present in command
+function checkIfArgs(a){
+    return a.filter(x => x.indexOf("--")>-1).length>0 ? true : false;
+    
+}
+
+
 // Check if string a is a prefix of string b
 function IfPrefix(a,b){
     let isPrefix=true;
@@ -122,5 +131,6 @@ module.exports = {
     IfPrefix: IfPrefix,
     changeColor: changeColor,
     printPath: printPath,
-    getContext: getContext
+    getContext: getContext,
+    checkIfArgs: checkIfArgs
 }
