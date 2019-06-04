@@ -53,7 +53,7 @@ let commands = {
             func.errorMessage(x);
         }
     },
-    "cat":(x)=>{
+    "cat": async (x)=>{
         var isgif=false;
         console.log(dStore);
         if(x.indexOf("--gif")!==-1){
@@ -69,17 +69,14 @@ let commands = {
             console.log(files);
             if(files.hasOwnProperty(info)){
                 if(isgif){
-                    
-                        fetch("https://api.giphy.com/v1/gifs/search?q=cat&api_key=uSDUmb3nwESGUPh9pz8cZs13fEbUg57d")
-                        .then(x => x.json())
-                        .then(function(y){
-                            var embed = y.data[Math.floor(Math.random() * Math.floor(25))].images.downsized_medium.url;
-                            // func.displayOutput(`<img src=${embed} />`);
-                            $(func.displayOutput(files[info]))
+                        var giphyAPI = await fetch("https://api.giphy.com/v1/gifs/search?q=cat&api_key=uSDUmb3nwESGUPh9pz8cZs13fEbUg57d");
+                        var giphyAPIResponse = await giphyAPI.text();
+                        var giphyData = JSON.parse(giphyAPIResponse).data
+                        var embed = giphyData[Math.floor(Math.random() * Math.floor(25))].images.downsized_medium.url;
+                        
+                        $(func.displayOutput(files[info]))
                             .append(`<img src=${embed} />`);
                             $("html, body").animate({ scrollTop: $(document).height()-$(window).height()+1000 }, 60);
-                        });
-                        
                     
                 }else{
                         func.displayOutput(files[info]);
