@@ -68,6 +68,14 @@ function removeOldBash() {
   document.getElementById("bash").setAttribute("id", "");
 }
 
+function saveCurrentTerminal() {
+  const currentTerminal = document.querySelector("#terminal");
+  localStorage.setItem("lastTerminalState", currentTerminal.innerHTML);
+
+  localStorage.setItem("lastTerminalPath", path);
+  localStorage.setItem("lastTerminalCurrentDir", current_dir);
+}
+
 // Print data to the DOM
 function displayOutput(output) {
   let elem = document.createElement("P");
@@ -139,4 +147,5 @@ module.exports = {
   printPath: printPath,
   getContext: getContext,
   checkIfArgs: checkIfArgs,
+  saveCurrentTerminal: saveCurrentTerminal,
 };

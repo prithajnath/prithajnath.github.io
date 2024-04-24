@@ -56,6 +56,8 @@ document.addEventListener("keydown", function (event) {
         60
       );
     }
+
+    func.saveCurrentTerminal();
   }
 
   // Up arrow key
@@ -119,8 +121,23 @@ document.addEventListener("keydown", function (event) {
 
 document.getElementById("bulb").addEventListener("click", func.changeColor);
 document.addEventListener("DOMContentLoaded", function (e) {
+  // Check LS for dark mode settings
   const btnColor = localStorage.getItem("bulb");
   const bgColor = localStorage.getItem("bgColor");
   const bg = localStorage.getItem("bg");
   func.changeColor(bg, bgColor, btnColor);
+
+  // Check LS for previous state
+  const lastTerminalState = localStorage.getItem("lastTerminalState");
+  if (lastTerminalState !== null) {
+    document.querySelector("#terminal").innerHTML = lastTerminalState;
+  }
+  const lastTerminalPath = localStorage.getItem("lastTerminalPath");
+  if (lastTerminalPath !== null) {
+    path = lastTerminalPath;
+  }
+  const lastTerminalCurrentDir = localStorage.getItem("lastTerminalCurrentDir");
+  if (lastTerminalCurrentDir !== null) {
+    current_dir = lastTerminalCurrentDir;
+  }
 });
